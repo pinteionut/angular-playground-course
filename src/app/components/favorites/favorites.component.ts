@@ -33,11 +33,19 @@ export class FavoritesComponent implements OnInit {
   }
 
   setFavorites() {
-    this.sharedData.getCoin().subscribe( coinId => {
-      this.favorites = this.coins.filter((coin: CoinInfo) => coin.id === coinId);
-      this.favorites.forEach((favorite) => {
-        favorite.my_currency = this.myCoins[favorite.id] * favorite.current_price;
-      })
+    this.sharedData.getCoin().subscribe(ids => {
+      this.favorites = [];
+
+      if(!ids) {
+        return ;
+      }
+
+      ids.forEach(id => {
+        const coin: CoinInfo =  this.coins.find((coin: CoinInfo) => coin.id === id);
+        coin.my_currency = (this.myCoins[coin.id] || 0) * coin.current_price;
+        this.favorites.push(coin);
+      });
+
     })
   }
 }

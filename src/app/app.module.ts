@@ -17,7 +17,10 @@ import { GraphicComponent } from './components/graphic/graphic.component';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,11 @@ import { MatIconModule } from '@angular/material/icon'
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    HttpClientModule
+    MatMenuModule,
+    HttpClientModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

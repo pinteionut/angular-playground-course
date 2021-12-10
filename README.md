@@ -17,3 +17,10 @@
 ### Learn how to use MatTable from Angular Material
 ### Learn how to use MatMenu from Angular Material
 ### Pass data between components using Observables.
+
+## Curs 4
+### Implemented info icon functionality
+### Implemented favorites functionality
+### Added graphic component
+### RxJs - switchMap
+

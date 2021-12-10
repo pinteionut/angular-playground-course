@@ -11,3 +11,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #f4f7f6;
 }
+
+.mat-menu-panel.mat-menu-panel {
+  min-width: 500px;
+}

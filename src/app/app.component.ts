@@ -1,3 +1,4 @@
+import { fromEvent, interval, switchMap, take } from 'rxjs';
 import { CoinInfo } from './models/CoinInfo';
 import { Component } from '@angular/core';
 import { CoinsService } from './services/coins.service';
