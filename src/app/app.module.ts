@@ -19,7 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
@@ -43,6 +43,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     MatPaginatorModule,
     MatIconModule,
     MatMenuModule,
+    MatSlideToggleModule,
     HttpClientModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')

@@ -1,8 +1,9 @@
 import { ChartData } from './../../models/ChartData';
 import { ShareDataService } from 'src/app/services/share-data.service';
 import { CoinsService } from './../../services/coins.service';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { switchMap } from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { switchMap, tap } from 'rxjs';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-graphic',
@@ -13,35 +14,42 @@ import { switchMap } from 'rxjs';
 export class GraphicComponent implements OnInit {
 
   public hours: string[] = [];
+  public coinSelected:boolean = false;
+  public coinSelectedValue:string;
   public coinValues: number[] = [];
   public updateOptions: any;
+  public chartType:string="Bar Chart"; 
 
-  public options: any = {
-    legend: {
-      data: ['bar'],
-      align: 'left',
-    },
-    tooltip: {},
-    xAxis: {
-      data: this.hours,
-      silent: false,
-      splitLine: {
-        show: false,
-      },
-    },
-    yAxis: {},
-    series: [
-      {
-        name: 'bar',
-        type: 'bar',
-        data: this.coinValues,
-        animationDelay: (idx: number) => idx * 10,
-      },
-    ],
-    animationEasing: 'elasticOut',
-    animationDelayUpdate: (idx: number) => idx * 5,
-  };
+  public options: any = this.UpdateChartType('bar');
 
+  private UpdateChartType(chartType:string):any{
+    return{
+      legend: {
+        data: [chartType],
+        align: 'left',
+      },
+      tooltip: {},
+      xAxis: {
+        data: this.hours,
+        silent: false,
+        splitLine: {
+          show: false,
+        },
+      },
+      yAxis: {},
+      series: [
+        {
+          name: chartType,
+          type: chartType,
+          data: this.coinValues,
+          animationDelay: (idx: number) => idx * 10,
+        },
+      ],
+      animationEasing: 'elasticOut',
+      animationDelayUpdate: (idx: number) => idx * 5,
+    };
+  
+  }
   constructor(
     private sharedData: ShareDataService,
     private coinService: CoinsService,
@@ -50,7 +58,12 @@ export class GraphicComponent implements OnInit {
   ngOnInit(): void {
     this.sharedData
       .getSelectedCoin()
-      .pipe(switchMap(coinId => {
+      .pipe(
+        tap(coinId=>{
+          this.coinSelected=true;
+          this.coinSelectedValue=coinId;
+        }),
+        switchMap(coinId => {
         return this.coinService.getHistoryDataForCoin(coinId)
       })).subscribe((chartData: ChartData) => {
           this.formatChartData(chartData);
@@ -83,4 +96,16 @@ export class GraphicComponent implements OnInit {
 
     this.cdr.markForCheck();
   }
+  onChangeEvent(ev:MatSlideToggleChange ):void{
+ 
+    if(ev.checked){
+      this.chartType="Line Chart";
+      this.updateOptions=  this.UpdateChartType("line"); 
+    }else{
+     this.chartType="Bar Chart";
+     this.updateOptions=  this.UpdateChartType("bar");
+   } 
+  }
+  
+  
 }

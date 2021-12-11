@@ -1,7 +1,7 @@
 .container {
     display: flex;
     justify-content: center;
-    flex-flow: column;
+    flex-flow: column;  
 }
 
 :host {
@@ -11,3 +11,9 @@
 .demo-chart {
     width: 600px;
 }
+.container-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+ 

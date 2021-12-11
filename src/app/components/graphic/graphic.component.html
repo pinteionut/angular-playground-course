@@ -1,8 +1,10 @@
 <mat-card class="container">
-  <mat-card-title>
-    Graphic
+  <mat-card-title class="container-header">
+   <strong> Graphic  {{coinSelectedValue | titlecase}}  </strong><mat-slide-toggle *ngIf="coinSelected" (change)="onChangeEvent($event)">{{chartType}}</mat-slide-toggle>
   </mat-card-title>
   <mat-card-content>
-    <div echarts [options]="options" [merge]="updateOptions" class="demo-chart"></div>
+   <div *ngIf="coinSelected; then coinIsSelected else coinNotSelected"></div>
+  <ng-template #coinIsSelected> <div echarts [options]="options" [merge]="updateOptions" class="demo-chart"></div></ng-template>
+  <ng-template #coinNotSelected >Selectati o moneda</ng-template>
   </mat-card-content>
 </mat-card>
