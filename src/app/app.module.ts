@@ -19,9 +19,21 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
 
 import { NgxEchartsModule } from 'ngx-echarts';
+import { CurrentCurrencyComponent } from './components/current-currency/current-currency.component';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { RouterModule, Routes } from '@angular/router';
+import { TransactionComponent } from './components/transaction/transaction.component';
 
+const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'history', component: TransactionComponent },
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,22 +45,28 @@ import { NgxEchartsModule } from 'ngx-echarts';
     FavoriteComponent,
     CoinDetailsComponent,
     WalletComponent,
-    GraphicComponent
+    GraphicComponent,
+    CurrentCurrencyComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
     MatCardModule,
+    MatButtonModule,
+    FormsModule,
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
+    MatInputModule,
     MatMenuModule,
+    MatSelectModule,
     HttpClientModule,
     NgxEchartsModule.forRoot({
-      echarts: () => import('echarts')
-    })
+      echarts: () => import('echarts'),
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

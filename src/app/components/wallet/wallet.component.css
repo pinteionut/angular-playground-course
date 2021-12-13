@@ -1,8 +1,23 @@
-.container {
-    display: flex;
-    justify-content: center;
+.wallet-icon {
+  color: darkgoldenrod;
 }
 
-:host {
-    margin: 24px 0;
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.card-container-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.over-price {
+  color: red;
+}
+
+.card-button-actions {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,0 +1,16 @@
+.mat-card-content {
+  text-align: center;
+}
+
+mat-card {
+  padding: 4px;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-infix {
+  padding: 6px;
+}
+
+:host {
+  margin: 4px;
+  margin-right: 10px;
+}

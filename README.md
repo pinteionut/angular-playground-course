@@ -24,3 +24,8 @@
 ### Added graphic component
 ### RxJs - switchMap
 
+## Curs 5
+### Added routes & navigation
+### Implemented Add Money functionality
+### Implemented wallet functionality Part 1
+
