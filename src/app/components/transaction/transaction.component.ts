@@ -1,4 +1,4 @@
-ckcimport { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -14,7 +14,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   transactionDataSource = new MatTableDataSource<TransactionData>();
-  columnsToDisplay = ['no', 'date', 'type', 'symbol', 'price', 'amount','delete'];
+  columnsToDisplay = ['no', 'date', 'type', 'symbol', 'price', 'total_cost','amount','delete'];
   disableDeleteData:boolean=true;
   constructor(private transactionService: TransactionDataService ) {}
 
