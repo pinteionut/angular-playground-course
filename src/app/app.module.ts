@@ -28,11 +28,15 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule, Routes } from '@angular/router';
 import { TransactionComponent } from './components/transaction/transaction.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { MatSortModule } from '@angular/material/sort';
 
-const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+const routes: Routes = [ 
+ 
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },  
   { path: 'dashboard', component: DashboardComponent },
   { path: 'history', component: TransactionComponent },
+  { path: '**', component: NotfoundComponent  }
 ];
 @NgModule({
   declarations: [
@@ -47,6 +51,8 @@ const routes: Routes = [
     WalletComponent,
     GraphicComponent,
     CurrentCurrencyComponent,
+    TransactionComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +62,7 @@ const routes: Routes = [
     MatButtonModule,
     FormsModule,
     MatTableModule,
+    MatSortModule,
     MatPaginatorModule,
     MatIconModule,
     MatInputModule,

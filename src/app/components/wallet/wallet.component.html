@@ -30,7 +30,7 @@
           <mat-label>Select Coin</mat-label>
           <mat-select
             [(ngModel)]="selectedCoin"
-            (selectionChange)="resetValues()"
+            (selectionChange)="resetValues($event)"
           >
             <mat-option
               *ngFor="let coin of coins$ | async"
@@ -69,10 +69,10 @@
   </mat-card-content>
   <mat-card-actions class="card-button-actions">
     <div>
-      <button mat-raised-button color="primary" [disabled]="overPrice">
+      <button mat-raised-button color="primary" (click)="buyCoins()" [disabled]="overPrice||!selectedCoin||!hasAmount">
         Buy
       </button>
-      <button mat-raised-button color="secondary" [disabled]="overPrice">
+      <button mat-raised-button color="secondary" (click)="sellCoins()" [disabled]="(overPrice||!selectedCoin||!hasAmount)">
         Sell
       </button>
     </div>

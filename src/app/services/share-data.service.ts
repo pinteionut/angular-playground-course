@@ -1,6 +1,7 @@
 import { CoinInfo } from './../models/CoinInfo';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { TransactionData } from '../models/TransactionData';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class ShareDataService {
   public selectedCoin$ = new Subject<string>();
   private storageBudget = +localStorage.getItem('budget');
   private budget$ = new BehaviorSubject<number>(this.storageBudget);
-
+  public showHeaderBudgetAdd = new BehaviorSubject<boolean>(true);
   constructor() {}
 
   public getCoin(): Observable<string[]> {
@@ -28,8 +29,16 @@ export class ShareDataService {
     localStorage.setItem('budget', currentBudget.toString());
     this.budget$.next(currentBudget);
   }
-
+  public subtractBudget(value: number) {
+    const currentBudget = (this.storageBudget -= value);
+    this.storageBudget = currentBudget;
+    localStorage.setItem('budget', currentBudget.toString());
+    this.budget$.next(currentBudget);
+  }
   public getBudget(): Observable<number> {
     return this.budget$.asObservable();
   }
+
+
+ 
 }
