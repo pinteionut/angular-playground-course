@@ -1,5 +1,5 @@
 <div id="header-content">
-  <img id="logo-img" src="/assets/images/logo.png" />
+  <img id="logo-img" routerLink="/dashboard" src="/assets/images/logo.png" />
   <app-favorites [coins]="coins"></app-favorites>
-  <app-current-currency></app-current-currency>
+  <app-current-currency *ngIf="showCurrency"></app-current-currency>
 </div>
